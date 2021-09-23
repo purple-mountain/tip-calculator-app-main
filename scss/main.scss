@@ -1,0 +1,185 @@
+@import 'variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 16px;
+}
+
+
+
+main {
+    background-color: $clr-light-grayish-cyan;
+    width: 100%;
+    min-height: 100vh;
+
+    .container {
+        background-color: white;
+        border-radius: 1.8rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        padding: clamp(1rem, calc(1.5rem + 1vw), 2.5rem);
+
+        .left {
+            font-family: $ff;
+
+            .number-input {
+                width: 100%;
+                height: clamp(1.5rem, calc(2.2rem + 1vw), 3rem);
+                background-color: $clr-input;
+                // background-image: url(./images/icon-dollar.svg);
+                padding: 0.6rem;
+                font-size: clamp(1rem, calc(1.1rem + 1vw), 2rem);
+                font-weight: $ff-700;
+                color: $clr-very-dark-cyan;
+                text-align: right;
+                border: none;
+                border-radius: 4px;
+                margin-top: 0.3rem;
+            }
+
+            &__bill {
+                position: relative;
+                color: $clr-grayish-cyan;
+                font-weight: $ff-700;
+                margin-bottom: 1.5rem;
+                
+
+                // Hides mini arrows
+                
+                
+                // svg {
+                //     position: absolute;
+                //     bottom: 0.6rem;
+                //     left: 0.6rem;
+                // }
+            }
+
+            &__tip-percent {
+                color: $clr-grayish-cyan;
+                font-weight: $ff-700;
+                margin-bottom: 1.5rem;
+
+                .grid-container {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    grid-template-rows: repeat(3, minmax(0, 1fr));
+                    gap: 0.7rem;
+                    margin-top: 0.7rem;
+
+                    button {
+                        font-family: $ff;
+                        font-weight: $ff-700;
+                        font-size: 1.2rem;
+                        background-color: $clr-very-dark-cyan;
+                        border: none;
+                        border-radius: 6px;
+                        color: $clr-white;
+                        height: 2.5rem;
+
+
+                        &:hover {
+                            background-color: $clr-numbers;
+                        }
+                    }
+
+                    input {
+                        font-family: $ff;
+                        font-weight: $ff-700;
+                        font-size: 1.2rem;
+                        background-color: $clr-input;
+                        text-align: right;
+                        border: none;
+                        padding-right: 2.2rem;
+                    }
+                }
+            }
+
+            &__people {
+                position: relative;
+                color: $clr-grayish-cyan;
+                font-weight: $ff-700;
+                margin-bottom: 1.5rem;
+                
+                
+            }
+        }
+
+        .right {
+            font-family: $ff;
+            font-weight: $ff-700;
+            color: $clr-white;
+            background-color: $clr-very-dark-cyan;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            border-radius: 1rem;
+
+            
+
+            &__tip-amount {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            &__total {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 2rem;
+                font-size: 0.9rem;
+
+            }
+
+            .tip-wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                row-gap: 0.2rem;
+            }
+        
+            .tip-value {
+                color: $clr-numbers;
+                font-size: 2rem;
+                margin-left: auto;
+                align-self: center;
+            }
+
+            .person {
+                font-size: 0.75rem;
+                color: $clr-dark-grayish-cyan;
+            }
+
+            button {
+                width: 100%;
+                height: 2.3rem;
+                background-color: $clr-numbers;
+                font-family: $ff;
+                font-weight: $ff-700;
+                font-size: 1.1rem;
+                text-transform: uppercase;
+                border: none;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
