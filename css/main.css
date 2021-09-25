@@ -117,7 +117,7 @@ main .container .right {
   border-radius: 1rem;
 }
 
-main .container .right__tip-amount {
+main .container .right__tip-amount, main .container .right__total {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,20 +125,15 @@ main .container .right__tip-amount {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
 
+main .container .right__tip-amount {
+  margin-bottom: 1.5rem;
+}
+
 main .container .right__total {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   margin-bottom: 2rem;
-  font-size: 0.9rem;
 }
 
 main .container .right .tip-wrapper {

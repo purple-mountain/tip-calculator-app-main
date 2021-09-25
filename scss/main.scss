@@ -124,20 +124,19 @@ main {
             border-radius: 1rem;
 
             
-
-            &__tip-amount {
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 1.5rem;
-                font-size: 0.9rem;
-            }
-
+            &__tip-amount, 
             &__total {
                 display: flex;
                 flex-direction: row;
-                margin-bottom: 2rem;
                 font-size: 0.9rem;
+            }
 
+            &__tip-amount {
+                margin-bottom: 1.5rem;
+            }
+
+            &__total {
+                margin-bottom: 2rem;
             }
 
             .tip-wrapper {
