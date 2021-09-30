@@ -33,21 +33,6 @@ main {
         .left {
             font-family: $ff;
 
-            .number-input {
-                width: 100%;
-                height: clamp(1.5rem, calc(2.2rem + 1vw), 3rem);
-                background-color: $clr-input;
-                // background-image: url(./images/icon-dollar.svg);
-                padding: 0.6rem;
-                font-size: clamp(1rem, calc(1.1rem + 1vw), 2rem);
-                font-weight: $ff-700;
-                color: $clr-very-dark-cyan;
-                text-align: right;
-                border: none;
-                border-radius: 4px;
-                margin-top: 0.3rem;
-            }
-
             &__bill {
                 position: relative;
                 color: $clr-grayish-cyan;
@@ -64,6 +49,25 @@ main {
                 //     left: 0.6rem;
                 // }
             }
+            
+            .number-input {
+                width: 100%;
+                height: clamp(1.5rem, calc(2.2rem + 1vw), 3rem);
+                background-color: $clr-input;
+                // background-image: url(./images/icon-dollar.svg);
+                padding: 0.6rem;
+                font-size: clamp(1rem, calc(1.1rem + 1vw), 2rem);
+                font-weight: $ff-700;
+                color: $clr-very-dark-cyan;
+                text-align: right;
+                margin-top: 0.3rem;
+                border: none;
+                border-radius: 4px;
+                outline: solid 2px transparent;
+                
+            }
+
+            
 
             &__tip-percent {
                 color: $clr-grayish-cyan;
@@ -86,6 +90,7 @@ main {
                         border-radius: 6px;
                         color: $clr-white;
                         height: 2.5rem;
+                        cursor: pointer;
 
 
                         &:hover {
@@ -94,24 +99,34 @@ main {
                     }
 
                     input {
+                        height: clamp(1.5rem, calc(2.2rem + 1vw), 3rem);
                         font-family: $ff;
                         font-weight: $ff-700;
-                        font-size: 1.2rem;
+                        font-size: clamp(1rem, calc(1.1rem + 1vw), 2rem);
                         background-color: $clr-input;
-                        text-align: right;
+                        text-align: center;
                         border: none;
-                        padding-right: 2.2rem;
+                        border-radius: 4px;
+                        outline: solid 2px transparent;
+                        padding: 0.6rem;
                     }
                 }
             }
 
             &__people {
+                // width: 100%;
                 position: relative;
                 color: $clr-grayish-cyan;
                 font-weight: $ff-700;
                 margin-bottom: 1.5rem;
                 
-                
+                #zero-error {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    color: rgb(187, 91, 26);
+                }
             }
         }
 
@@ -168,6 +183,7 @@ main {
                 text-transform: uppercase;
                 border: none;
                 border-radius: 4px;
+                cursor: pointer;
             }
         }
     }

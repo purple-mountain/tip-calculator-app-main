@@ -12,192 +12,197 @@ const twentyFive = document.getElementById("twenty-five")
 const fifty = document.getElementById("fifty")
 const custom = document.getElementById("custom")
 const numberOfPeople = document.getElementById("people")
+const zeroError = document.getElementById("zero-error")
 const tipPerPerson = document.getElementById("tip-per-person")
 const totalValue = document.getElementById("total-value")
 const reset = document.getElementById("reset")
 let tipAmount = 0
 let total = 0
 
-// console.log(bill, five, ten, fifteen, twentyFive, fifty, custom, people, perPerson, total, reset)
+window.onload = function clearingInput() {
+    bill.value = ''
+    numberOfPeople.value = ''
+    custom.value = ''
+}
 
 function tip(number) {
     return bill.value * number / numberOfPeople.value
-    // tipPerPerson.textContent = tipAmount
 }
 
-function totalBill() {
-    return bill.value / numberOfPeople + tipAmount.value
+function totalBill(tipAmount) {
+    return bill.value / numberOfPeople.value + tipAmount
 }
 
-// if(document.getElementById('button').clicked == true)
-
-// if (bill === 0 && numberOfPeople === 0) {
-//     console.log("Pasghetti")
-// 
-// console.log(tip(0.1))
-// tipPerPerson.textContent = `$${tip(0.1)}`
-     
-// five.addEventListener("click", function(){
-//     tipPerPerson.textContent = `$${tip(0.05)}`
-
-// })
-
-// ten.addEventListener("click", function(){
-//     tipPerPerson.textContent = `$${tip(0.1)}`
-
-// })
-
-// fifteen.addEventListener("click", function(){
-//     tipPerPerson.textContent = `$${tip(0.15)}`
-
-// })
-
-// twentyFive.addEventListener("click", function(){
-//     tipPerPerson.textContent = `$${tip(0.25)}`
-
-// })
-
-// fifty.addEventListener("click", function(){
-//     tipPerPerson.textContent = `$${tip(0.5)}`
-
-// })
-
-// custom.addEventListener("click", function(){
-//     let customInput = custom.value / 100
-//     tipPerPerson.textContent = `$${tip(customInput)}`
-//     // console.log(`$${tip(customInput)}`)
-//     // console.log(customInput)
-// })
-
-
-if (bill.value && numberOfPeople.value) {
-    // five.addEventListener("click", function(){
-    //     tipPerPerson.textContent = `$${tip(0.05)}`
-    // })
-
-    // When the percenrage button is clicked
-    five.addEventListener("click", function(){
-        let fiveClicked = true
-        tipPerPerson.textContent = `$${tip(0.05).toFixed(2)}`
-        if (fiveClicked === true) {
-            bill.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.05).toFixed(2)}`
-            })
-            numberOfPeople.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.05).toFixed(2)}`
-            })
-        }
-    })
-
-    ten.addEventListener("click", function(){
-        let tenClicked = true
-        tipPerPerson.textContent = `$${tip(0.1).toFixed(2)}`
-        if (tenClicked === true) {
-            bill.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.1).toFixed(2)}`
-            })
-            numberOfPeople.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.1).toFixed(2)}`
-            })
-        }
-    })
-
-    fifteen.addEventListener("click", function(){
-        let fifteenClicked = true
-        tipPerPerson.textContent = `$${tip(0.15).toFixed(2)}`
-        if (fifteenClicked === true) {
-            bill.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.15).toFixed(2)}`
-            })
-            numberOfPeople.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.15).toFixed(2)}`
-            })
-        }
-    })
-
-    twentyFive.addEventListener("click", function(){
-        let twentyFiveClicked = true
-        tipPerPerson.textContent = `$${tip(0.25).toFixed(2)}`
-        if (twentyFiveClicked === true) {
-            bill.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.25).toFixed(2)}`
-            })
-            numberOfPeople.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.25).toFixed(2)}`
-            })
-        }
-    })
-
-    fifty.addEventListener("click", function(){
-        let fiftyClicked = true
-        tipPerPerson.textContent = `$${tip(0.5).toFixed(2)}`
-        if (fiftyClicked === true) {
-            bill.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.5).toFixed(2)}`
-            })
-            numberOfPeople.addEventListener("input", function() {
-                tipPerPerson.textContent = `$${tip(0.5).toFixed(2)}`
-            })
-        }
-    })
-
-    // When user makes changes in input field
-    // bill.addEventListener("input", function() {
-    //     tipPerPerson.textContent = `$${tip(0.05).toFixed(2)}`
-    // })
-
-    // numberOfPeople.addEventListener("input", function() {
-    //     tipPerPerson.textContent = `$${tip(0.05).toFixed(2)}`
-    // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // five.addEventListener("change", function() {
-    //     console.log("Pasghetti")
-    // })
-    // console.log("GG")
+function tipTextContent() {
+    tipPerPerson.textContent = `$0.00`
+    totalValue.textContent = `$0.00`
 }
 
-// if(document.getElementById("question").value.length == 0) 
+function inputZero() {
+    zeroError.style.display = "inline"
+    numberOfPeople.style.outlineColor = "rgb(187, 91, 26)"
+}
+
+function inputZeroNone() {
+    zeroError.style.display = "none"
+    numberOfPeople.style.outlineColor = "hsl(172, 67%, 45%)"
+}
+
+function customAlign(alignment) {
+    custom.style.textAlign = alignment
+}
+
+function buttonValue() {
+    custom.value = ''
+}
+
+function buttonColor(btn) {
+    five.style.backgroundColor = "hsl(183, 100%, 15%)"
+    ten.style.backgroundColor = "hsl(183, 100%, 15%)"
+    fifteen.style.backgroundColor = "hsl(183, 100%, 15%)"
+    twentyFive.style.backgroundColor = "hsl(183, 100%, 15%)"
+    fifty.style.backgroundColor = "hsl(183, 100%, 15%)"
+    btn.style.backgroundColor = "rgb(38, 192, 171)"
+}
+
+function percentButtons(percentage) {
+    if (bill.value > 0 && numberOfPeople.value > 0) {
+        tipPerPerson.textContent = `$${tip(percentage).toFixed(2)}`
+        totalValue.textContent = `$${totalBill(tip(percentage)).toFixed(2)}`
+    } else if (!numberOfPeople.value || numberOfPeople.value <= 0) {
+        inputZero()
+    } else {
+        tipTextContent()
+    }
+    
+    bill.addEventListener("input", function() {
+        if (numberOfPeople.value > 0) {
+            tipPerPerson.textContent = `$${tip(percentage).toFixed(2)}`
+            totalValue.textContent = `$${totalBill(tip(percentage)).toFixed(2)}`
+        } else {
+            tipTextContent()
+        }
+    })
+
+    numberOfPeople.addEventListener("input", function() {
+        if (bill.value > 0 && numberOfPeople.value > 0) {
+            inputZeroNone()
+            tipPerPerson.textContent = `$${tip(percentage).toFixed(2)}`
+            totalValue.textContent = `$${totalBill(tip(percentage)).toFixed(2)}`
+        } else if (numberOfPeople.value <= 0) {
+            tipTextContent()
+            inputZero()
+        } else {
+            inputZeroNone()
+            tipTextContent()
+        }
+    })
+}
+
+function btnColorTipValue(btnColor, percentButton) {
+    buttonColor(btnColor)
+    percentButtons(percentButton)
+    buttonValue()
+}
+
+function customFocusBlur() {
+    custom.addEventListener("focus", function() {
+        tipTextContent()
+    })
+
+    custom.addEventListener("blur", function() {
+        customAlign("center")
+    })
+}
 
 
-// reset.addEventListener("click", function() {
-//     bill
-// })
+bill.addEventListener("focus", function() {
+    tipTextContent()
+    bill.style.outlineColor = "hsl(172, 67%, 45%)"
+
+    bill.addEventListener("focusout", function() {
+        bill.style.outlineColor = "transparent"
+    })
+})
 
 
 
+numberOfPeople.addEventListener("focus", function() {
+    inputZero()
+    tipTextContent()
+})
+
+numberOfPeople.addEventListener("input", function() {
+    if (numberOfPeople.value <= 0) {
+        inputZero()
+    } else {
+        inputZeroNone()
+
+        numberOfPeople.addEventListener("focusout", function() {
+            if (numberOfPeople.value > 0) {
+                numberOfPeople.style.outlineColor = "transparent"
+            }
+        })
+    }
+})
+
+custom.addEventListener("focus", function() {
+    custom.style.outlineColor = "hsl(172, 67%, 45%)"
+
+    custom.addEventListener("focusout", function() {
+        custom.style.outlineColor = "transparent"
+    })
+})
+
+// When the percentage buttons are clicked
 
 
 
+five.addEventListener("click", function(){
+    btnColorTipValue(five, 0.05)
+})
 
+ten.addEventListener("click", function(){
+    btnColorTipValue(ten, 0.1)
 
+})
 
+fifteen.addEventListener("click", function(){
+    btnColorTipValue(fifteen, 0.15)
 
+})
 
+twentyFive.addEventListener("click", function(){
+    btnColorTipValue(twentyFive, 0.25)
 
+})
 
+fifty.addEventListener("click", function fiftyClick(){
+    btnColorTipValue(fifty, 0.5)
+    
+})
 
+custom.addEventListener("focus", function() {
+    percentButtons(0)
+    custom.addEventListener("input", function() {
+        let customPercent = custom.value / 100
+        customAlign("right")
+        percentButtons(customPercent)
+        customFocusBlur()
+        buttonColor(five)
+        five.style.backgroundColor = "hsl(183, 100%, 15%)"
+    })
+})
 
-
-
-
-
-
-
-
-
-
-
-
+reset.addEventListener("click", function() {
+    bill.value = ''
+    numberOfPeople.value = ''
+    buttonValue()
+    tipTextContent()
+    zeroError.style.display = "none"
+    numberOfPeople.style.outlineColor = "transparent"
+    btnColorTipValue(fifty, 0)
+    fifty.style.backgroundColor = "hsl(183, 100%, 15%)"
+    zeroError.style.display = "none"
+    numberOfPeople.style.outlineColor = "transparent"
+})
