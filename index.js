@@ -3,7 +3,10 @@
 // `
 // <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17"><path fill="#9EBBBD" d="M6.016 16.328v-1.464c1.232-.08 2.22-.444 2.964-1.092.744-.648 1.116-1.508 1.116-2.58v-.144c0-.992-.348-1.772-1.044-2.34-.696-.568-1.708-.932-3.036-1.092V4.184c.56.144 1.012.4 1.356.768.344.368.516.816.516 1.344v.288h1.824v-.432c0-.448-.088-.876-.264-1.284a3.783 3.783 0 00-.744-1.116A4.251 4.251 0 007.54 2.9a5.324 5.324 0 00-1.524-.492V.872H4.288V2.36a5.532 5.532 0 00-1.416.324c-.448.168-.84.392-1.176.672-.336.28-.604.616-.804 1.008-.2.392-.3.844-.3 1.356v.144c0 .96.316 1.708.948 2.244.632.536 1.548.884 2.748 1.044v3.912c-.704-.16-1.248-.472-1.632-.936-.384-.464-.576-1.08-.576-1.848v-.288H.256v.576c0 .464.08.924.24 1.38.16.456.404.88.732 1.272.328.392.744.728 1.248 1.008s1.108.476 1.812.588v1.512h1.728zM4.288 7.424c-.688-.128-1.164-.332-1.428-.612-.264-.28-.396-.644-.396-1.092 0-.464.176-.832.528-1.104.352-.272.784-.448 1.296-.528v3.336zm1.728 5.712V9.344c.768.128 1.328.328 1.68.6.352.272.528.688.528 1.248 0 .544-.196.984-.588 1.32-.392.336-.932.544-1.62.624z"/></svg>
 // `
-
+const mediaQuery = window.matchMedia("(min-width: 850px)")
+const main = document.getElementById("main")
+const container = document.getElementById("container")
+const logoContainer = document.getElementById("logo-container")
 const bill = document.getElementById("bill")
 const five = document.getElementById("five")
 const ten = document.getElementById("ten")
@@ -18,11 +21,40 @@ const totalValue = document.getElementById("total-value")
 const reset = document.getElementById("reset")
 let tipAmount = 0
 let total = 0
+let mainHeight = main.clientHeight
+let containerHeight = container.clientHeight
+let logoContainerHeight = logoContainer.clientHeight
+
+if (mediaQuery.matches) {
+    logoContainer.style.height = `calc((${mainHeight}px - ${containerHeight}px) / 2)`
+} else {
+    logoContainer.style.height = `calc(${mainHeight}px - ${containerHeight}px)`
+}
+
+window.onresize= function() {
+    mainHeight = main.clientHeight
+    containerHeight = container.clientHeight
+    logoContainerHeight = logoContainer.clientHeight
+
+    if (mediaQuery.matches) {
+        logoContainer.style.height = `calc((${mainHeight}px - ${containerHeight}px) / 2)`
+    } else {
+        logoContainer.style.height = `calc(${mainHeight}px - ${containerHeight}px)`
+    }
+}
 
 window.onload = function clearingInput() {
     bill.value = ''
     numberOfPeople.value = ''
     custom.value = ''
+}
+
+function resetOpacity() {
+    if (tipPerPerson.textContent !== "$0.00") {
+        reset.style.opacity = "1"
+    } else if (tipPerPerson.textContent === "$0.00") {
+        reset.style.opacity = "0.1"
+    }
 }
 
 function tip(number) {
@@ -36,6 +68,30 @@ function totalBill(tipAmount) {
 function tipTextContent() {
     tipPerPerson.textContent = `$0.00`
     totalValue.textContent = `$0.00`
+}
+
+function limitBill(element) {
+    let maxChars = 7;
+
+    if(element.value.length > maxChars) {
+        element.value = element.value.substr(0, maxChars);
+    }
+}
+
+function limitCustom(element) {
+    let maxChars = 4;
+
+    if(element.value.length > maxChars) {
+        element.value = element.value.substr(0, maxChars);
+    }
+}
+
+function limitNumberOfPeople(element) {
+    let maxChars = 10;
+
+    if(element.value.length > maxChars) {
+        element.value = element.value.substr(0, maxChars);
+    }
 }
 
 function inputZero() {
@@ -74,6 +130,8 @@ function percentButtons(percentage) {
     } else {
         tipTextContent()
     }
+
+    resetOpacity()
     
     bill.addEventListener("input", function() {
         if (numberOfPeople.value > 0) {
@@ -82,6 +140,7 @@ function percentButtons(percentage) {
         } else {
             tipTextContent()
         }
+        resetOpacity()
     })
 
     numberOfPeople.addEventListener("input", function() {
@@ -96,6 +155,7 @@ function percentButtons(percentage) {
             inputZeroNone()
             tipTextContent()
         }
+        resetOpacity()
     })
 }
 
@@ -118,18 +178,19 @@ function customFocusBlur() {
 
 bill.addEventListener("focus", function() {
     tipTextContent()
+    resetOpacity()
     bill.style.outlineColor = "hsl(172, 67%, 45%)"
 
     bill.addEventListener("focusout", function() {
         bill.style.outlineColor = "transparent"
     })
+    
 })
-
-
 
 numberOfPeople.addEventListener("focus", function() {
     inputZero()
     tipTextContent()
+    resetOpacity()
 })
 
 numberOfPeople.addEventListener("input", function() {
@@ -144,19 +205,25 @@ numberOfPeople.addEventListener("input", function() {
             }
         })
     }
+    resetOpacity()
 })
 
-custom.addEventListener("focus", function() {
-    custom.style.outlineColor = "hsl(172, 67%, 45%)"
-
-    custom.addEventListener("focusout", function() {
-        custom.style.outlineColor = "transparent"
-    })
-})
-
+    
 // When the percentage buttons are clicked
-
-
+// five.addEventListener("mouseover", function() {
+//     buttonColor(five)
+//     five.addEventListener("mouseout", function() {
+//         five.style.backgroundColor = "hsl(183, 100%, 15%)"
+//     })
+// })
+// function percentButtonsHover(buttonNumber) {
+//     buttonNumber.addEventListener("mouseover", function() {
+//         buttonNumber.style.backgroundColor = "rgb(38, 192, 171)"
+//         buttonNumber.addEventListener("mouseout", function() {
+//             buttonNumber.style.backgroundColor = "hsl(183, 100%, 15%)"
+//         })
+//     })
+// }
 
 five.addEventListener("click", function(){
     btnColorTipValue(five, 0.05)
@@ -164,45 +231,71 @@ five.addEventListener("click", function(){
 
 ten.addEventListener("click", function(){
     btnColorTipValue(ten, 0.1)
-
 })
 
 fifteen.addEventListener("click", function(){
     btnColorTipValue(fifteen, 0.15)
-
 })
 
 twentyFive.addEventListener("click", function(){
     btnColorTipValue(twentyFive, 0.25)
-
 })
 
 fifty.addEventListener("click", function fiftyClick(){
     btnColorTipValue(fifty, 0.5)
-    
 })
 
 custom.addEventListener("focus", function() {
     percentButtons(0)
+    buttonColor(five)
+    five.style.backgroundColor = "hsl(183, 100%, 15%)"
+    tipTextContent()
+    resetOpacity()
+    
+    custom.style.outlineColor = "hsl(172, 67%, 45%)"
     custom.addEventListener("input", function() {
         let customPercent = custom.value / 100
         customAlign("right")
         percentButtons(customPercent)
         customFocusBlur()
-        buttonColor(five)
         five.style.backgroundColor = "hsl(183, 100%, 15%)"
+    })
+    custom.addEventListener("focusout", function() {
+        resetOpacity()
+        custom.style.outlineColor = "transparent"
+    })
+
+    // Changing opacity of reset button after custom input is focused
+    // and values are entered in bill and people input
+    bill.addEventListener("input", function() {
+        if (!custom.value) {
+            // tipTextContent()
+            resetOpacity()
+        }
+    })
+    numberOfPeople.addEventListener("input", function() {
+        if (!custom.value) {
+            // tipTextContent()
+            resetOpacity()
+        }
     })
 })
 
 reset.addEventListener("click", function() {
-    bill.value = ''
-    numberOfPeople.value = ''
-    buttonValue()
-    tipTextContent()
-    zeroError.style.display = "none"
-    numberOfPeople.style.outlineColor = "transparent"
-    btnColorTipValue(fifty, 0)
-    fifty.style.backgroundColor = "hsl(183, 100%, 15%)"
-    zeroError.style.display = "none"
-    numberOfPeople.style.outlineColor = "transparent"
+    if (reset.style.opacity === "1") {
+        bill.value = ''
+        numberOfPeople.value = ''
+        buttonValue()
+        zeroError.style.display = "none"
+        numberOfPeople.style.outlineColor = "transparent"
+        btnColorTipValue(fifty, 0)
+        fifty.style.backgroundColor = "hsl(183, 100%, 15%)"
+        zeroError.style.display = "none"
+        numberOfPeople.style.outlineColor = "transparent"
+        tipTextContent()
+    }
+    reset.style.opacity = "0.1"
 })
+
+
+
