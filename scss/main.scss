@@ -15,8 +15,6 @@ body {
     font-size: 16px;
 }
 
-
-
 main {
     display: flex;
     align-items: flex-end;
@@ -33,31 +31,17 @@ main {
         position: absolute;
         top: 0;
         width: 100%;
-
-        // .logo {
-        //     position: absolute;
-        //     top: 0;
-        //     margin: 0 auto;
-        //     right: 50%;
-        //     left: 50%;
-        // }
+        
     }
         
-
     .container {
         height: $height;
         background-color: white;
         border-radius: 1.8rem;
         display: flex;
         flex-direction: column;
-        // min-width: 12.5rem;
-        // max-width: 26.875rem;
-        // flex-wrap: nowrap;   
         row-gap: 1.5rem;
         padding: clamp(1rem, calc(1.5rem + 1vw), 2.5rem);
-
-        
-
 
         .left {
             font-family: $ff;
@@ -67,23 +51,12 @@ main {
                 color: $clr-grayish-cyan;
                 font-weight: $ff-700;
                 margin-bottom: 1.5rem;
-                
-
-                // Hides mini arrows
-                
-                
-                // svg {
-                //     position: absolute;
-                //     bottom: 0.6rem;
-                //     left: 0.6rem;
-                // }
             }
             
             .number-input {
                 width: 100%;
                 height: clamp(1.5rem, calc(2.2rem + 1vw), 3rem);
                 background-color: $clr-input;
-                // background-image: url(./images/icon-dollar.svg);
                 padding: 0.6rem;
                 font-size: clamp(1rem, calc(1.1rem + 1vw), 2rem);
                 font-weight: $ff-700;
@@ -101,12 +74,6 @@ main {
                 bottom: calc(0.5rem + 0.32vw);
                 left: 0.6rem;
             }
-
-            // @media screen and (max-width: 700px) {
-            //     .dollar-user-icon {
-            //         bottom: 0.67rem;
-            //     }
-            // }
 
             &__tip-percent {
                 color: $clr-grayish-cyan;
@@ -134,7 +101,7 @@ main {
 
                         &:hover {
                             background-color: $clr-numbers;
-                            // opacity: 0.5;
+                            opacity: 0.5;
                         }
                     }
 
@@ -143,7 +110,6 @@ main {
                         font-family: $ff;
                         font-weight: $ff-700;
                         font-size: clamp(1rem, calc(1.1rem + 1vw), 1.6rem);
-                        // font-size: 1.2rem;
                         background-color: $clr-input;
                         text-align: center;
                         border: none;
@@ -159,11 +125,9 @@ main {
                         grid-template-rows: repeat(2, minmax(0, 1fr));
                     }
                 }
-
             }
 
             &__people {
-                // width: 100%;
                 position: relative;
                 color: $clr-grayish-cyan;
                 font-weight: $ff-700;
@@ -177,7 +141,6 @@ main {
                     color: rgb(187, 91, 26);
                 }
             }
-            
         }
 
         .right {
@@ -191,7 +154,6 @@ main {
             padding: 2.5rem 1.5rem 1.5rem 1.5rem;
             border-radius: 1rem;
 
-            
             &__tip-amount, 
             &__total {
                 display: flex;
@@ -227,8 +189,6 @@ main {
             }
 
             button {
-                // position: absolute;
-                // justify-self: flex-end;
                 margin-top: auto;
                 width: 100%;
                 height: 2.3rem;
@@ -246,7 +206,6 @@ main {
         @media screen and (min-width: 850px) {
             .left, 
             .right {
-                // flex-grow: 0;
                 flex-basis: 50%;
             }
         }
@@ -261,17 +220,9 @@ main {
 
     @media screen and (min-width: 850px) {
         .container {
-            // width: auto;
-            // flex-grow: 0;
             max-width: 55rem;
             flex-direction: row;
             column-gap: 1.5rem;
-            // padding: 0;
-            // flex-basis: ;
-
-            // .left {
-            //     flex-basis: 320px;
-            // }
         }
     }
 }
@@ -281,7 +232,7 @@ main {
     }
 }
 
-
+// Hides mini arrows
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
